@@ -13,7 +13,10 @@ import {
   ToastContainer,
   toast,
 } from "react-toastify";
-import { Link } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 const CardsData = [
   {
@@ -107,6 +110,11 @@ function Sec1() {
       "_blank" // <- This is what makes it open in a new window.
     );
   };
+  const navigate = useNavigate;
+  const redirect = () => {
+    console.log("redirected");
+    navigate("/leaderboard");
+  };
   return (
     <div className={style.sec1}>
       <div className={style.bottomGrad}></div>
@@ -137,9 +145,12 @@ function Sec1() {
               ? "Already a ambassador"
               : "Sign Up"}
           </button>
-          <button className={style.introExp}>
-            <Link to="/leaderboard">
-              LEADERBOARD!
+          <button className={style.introLog}>
+            <Link
+              to="/leaderboard"
+              className={style.nodecor}
+            >
+              View Leaderboard
             </Link>
           </button>
         </div>
