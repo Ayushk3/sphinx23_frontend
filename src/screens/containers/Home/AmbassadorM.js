@@ -107,11 +107,7 @@ function Sec1() {
       "_blank" // <- This is what makes it open in a new window.
     );
   };
-  const navigate = useNavigate;
-  const redirect = () => {
-    console.log("redirected");
-    navigate("/leaderboard");
-  };
+
   return (
     <div className={style.sec1}>
       <div className={style.bottomGrad}></div>
