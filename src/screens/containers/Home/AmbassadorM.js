@@ -60,7 +60,7 @@ const Points = [
   },
 ];
 
-function Sec1() {
+function Sec1(props) {
   const toastStyle = {
     position: "top-right",
     autoClose: 2000,
@@ -138,13 +138,15 @@ function Sec1() {
               ? "Already a ambassador"
               : "Sign Up"}
           </button>
-          <button className={style.introLog}>
-            <Link
-              to="/leaderboard"
-              className={style.nodecor}
-            >
+          <button
+            className={style.introLog}
+            onClick={() => {
+              props.setCurrTab("LEADERBOARD");
+            }}
+          >
+            <p className={style.nodecor}>
               View Leaderboard
-            </Link>
+            </p>
           </button>
         </div>
       </div>
@@ -246,7 +248,7 @@ function AmbassadorM() {
         landing={false}
         setLand={() => {}}
       />
-      <Sec1 />
+      <Sec1 setCurrTab={setCurrTab} />
       <Sec2 />
       <Footer setCurrTab={() => {}} />
     </div>

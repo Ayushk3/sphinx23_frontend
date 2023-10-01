@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../../styles/ambass-leaderboard.css";
 import user from "../../../images/user_1.png";
+import HomeNav from "./homeNav";
 
 const AmbassadorLeaderboard = () => {
+  const Tabs = ["Home", "Events", "Profile"];
+  const [currTab, setCurrTab] = useState(
+    "LEADERBOARD"
+  );
   return (
     <div>
+      <HomeNav
+        setCurrTab={setCurrTab}
+        currTab={currTab}
+        Tabs={Tabs}
+        notanimation={true}
+        landing={false}
+        setLand={() => {}}
+      />
       <div className="path">
         <span>Campus Ambassador</span> Leaderboard
       </div>
