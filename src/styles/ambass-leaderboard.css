@@ -34,6 +34,7 @@ html {
   top: 15%;
   z-index: 100;
   /* padding-top: ; */
+  margin-top: 1rem;
 }
 .nav::before {
   content: "";
@@ -80,6 +81,23 @@ html {
 /* NAVIGATION BAR */
 
 /* LEADERBOARD CONTAINER */
+.leaderboard-header {
+  position: absolute;
+  margin: auto;
+  top: -50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 96%;
+  background-color: #2a1b0b;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  /* border-radius: 7px; */
+}
 
 .leaderboard-container {
   display: grid;
@@ -89,14 +107,19 @@ html {
   overflow: scroll;
   position: absolute;
   margin: auto;
-  top: 20%;
+  top: 30%;
   left: 0;
   right: 0;
   bottom: 0;
   padding: 2rem;
+  padding-top: 0.5rem;
+  width: 100%;
 }
 .leaderboard-container::-webkit-scrollbar {
   width: 0rem; /* Adjust as needed */
+}
+.moveX {
+  transform: translateX(4rem);
 }
 
 .board-item {
@@ -105,7 +128,7 @@ html {
   justify-content: space-between;
   padding: 0.5rem 2rem;
   background-color: #101010;
-  border-radius: 7px;
+  /* border-radius: 7px; */
   width: 100%;
   height: 4rem;
 }
@@ -119,6 +142,7 @@ html {
   justify-content: center;
   font-size: 0.8rem;
   transform: translateY(5rem);
+  margin-left: -5rem;
 }
 .username {
   font-size: 1rem;
@@ -134,6 +158,14 @@ html {
 .user-img img {
   transform: scale(0.6);
 }
+.user-header {
+  transform: translateY(-5rem) translateX(3rem);
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: bold;
+  align-self: center;
+}
+
 @media only screen and (max-width: 550px) {
   .leaderboard-container {
     padding-left: 10px;
@@ -148,6 +180,28 @@ html {
   }
   .referrals {
     margin-right: -1.5rem;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .nav-item a {
+    /* margin-right: -2rem; */
+  }
+}
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 80%;
+  }
+  .user-img img {
+    transform: scale(0.4) translateY(40%);
+  }
+  .user {
+    margin-left: -10%;
+  }
+  .leaderboard-header {
+    font-size: 80%;
+  }
+  .nav-item {
+    margin-right: -3rem;
   }
 }
 /* LEADERBOARD CONTAINER */

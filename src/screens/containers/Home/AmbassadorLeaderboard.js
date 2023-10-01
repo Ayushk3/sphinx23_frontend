@@ -6,7 +6,7 @@ const AmbassadorLeaderboard = () => {
   return (
     <div>
       <div className="path">
-        <span>Campus Ambassador</span> Leaderboard
+        <span>Campus Ambassador</span> {"<"} Leaderboard
       </div>
       <nav className="nav">
         <ul className="nav-list">
@@ -17,6 +17,16 @@ const AmbassadorLeaderboard = () => {
           </li>
         </ul>
       </nav>
+
+      <div className="leaderboard-header">
+        <div className="rank">Rank</div>
+        <div className="user">
+          <div className="user-header">USER NAME</div>
+        </div>
+        <div className="college-name moveX">College Name</div>
+        <div className="referrals">Referrals</div>
+      </div>
+
       <div className="leaderboard-container">
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -24,16 +34,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -41,16 +45,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -58,16 +56,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -75,16 +67,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -92,16 +78,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -109,16 +89,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -126,16 +100,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -143,16 +111,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -160,16 +122,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -177,16 +133,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -194,16 +144,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -211,16 +155,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -228,16 +166,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -245,16 +177,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -262,16 +188,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -279,16 +199,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
         <div className="board-item">
           <div className="rank"># 0001</div>
@@ -296,16 +210,10 @@ const AmbassadorLeaderboard = () => {
             <div className="user-img">
               <img src={user} alt="user-image" />
             </div>
-            <div className="username">
-              Kishan Srivastava
-            </div>
+            <div className="username">Kishan Srivastava</div>
           </div>
-          <div className="college-name">
-            MNIT Jaipur
-          </div>
-          <div className="referrals">
-            10 referrals
-          </div>
+          <div className="college-name">MNIT Jaipur</div>
+          <div className="referrals">10 referrals</div>
         </div>
       </div>
     </div>
