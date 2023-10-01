@@ -21,28 +21,42 @@ function HomeNav({
 }) {
   const navigate = useNavigate();
 
-  const currUser = useSelector((state) => state.auth.curruser);
+  const currUser = useSelector(
+    (state) => state.auth.curruser
+  );
 
   const [menu, setMenu] = useState(false);
 
   useEffect(() => {
-    if (currTab == "Events" || currTab == "EVENTS") navigate("/events");
-    if (currTab == "PROFILE" || currTab == "Profile") {
+    if (
+      currTab == "Events" ||
+      currTab == "EVENTS"
+    )
+      navigate("/events");
+    if (
+      currTab == "PROFILE" ||
+      currTab == "Profile"
+    ) {
       if (currUser) navigate("/dashboard");
       else {
         navigate("/login");
       }
     }
-    if (currTab == "AMBASSADOR") navigate("/ambassador");
+    if (currTab == "AMBASSADOR")
+      navigate("/ambassador");
+    if (currTab == "LEADERBOARD")
+      navigate("/leaderboard");
     if (currTab == "Contact") {
       // navigate("/");
       window.location.href = "#contact";
     }
 
-    if (currTab == "SCHEDULE") navigate("/comming");
+    if (currTab == "SCHEDULE")
+      navigate("/comming");
 
     if (currTab == "TEAM") navigate("/comming");
-    if (currTab == "SPONSORS") navigate("/comming");
+    if (currTab == "SPONSORS")
+      navigate("/comming");
     if (currTab == "Logout") {
       //callLogout
       Session.remove("profile");
@@ -58,7 +72,8 @@ function HomeNav({
     }
     if (!landing) {
       ////console.log(currTab);
-      if (currTab == "Home" || currTab == "HOME") navigate("/");
+      if (currTab == "Home" || currTab == "HOME")
+        navigate("/");
     }
   }, [currTab]);
 
@@ -68,12 +83,22 @@ function HomeNav({
     } catch {}
   }, [menu]);
 
-  menu ? disableScroll.on() && setLand(false) : disableScroll.off();
+  menu
+    ? disableScroll.on() && setLand(false)
+    : disableScroll.off();
 
   return (
     <div
-      className={notanimation ? "landing-navbar-notAnim" : "landing-navbar"}
-      style={landing ? { WebkitAnimationDelay: "2.4s" } : {}}
+      className={
+        notanimation
+          ? "landing-navbar-notAnim"
+          : "landing-navbar"
+      }
+      style={
+        landing
+          ? { WebkitAnimationDelay: "2.4s" }
+          : {}
+      }
     >
       {menu && (
         <Menu
@@ -84,7 +109,10 @@ function HomeNav({
         />
       )}
       <div className="landing-logo">
-        <img src={logo} style={{ width: "80%" }}></img>
+        <img
+          src={logo}
+          style={{ width: "80%" }}
+        ></img>
       </div>
       <div className="landing-tabs">
         {Tabs.map((value, i) => {
@@ -101,7 +129,8 @@ function HomeNav({
               style={
                 currTab == value
                   ? {
-                      textShadow: "0px 0px 0px #FFFFFF ",
+                      textShadow:
+                        "0px 0px 0px #FFFFFF ",
 
                       color: "#c9c9c9",
                     }

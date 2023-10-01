@@ -182,6 +182,7 @@ html {
     margin-right: -1.5rem;
   }
 }
+<<<<<<< HEAD
 @media only screen and (max-width: 900px) {
   .nav-item a {
     /* margin-right: -2rem; */
@@ -205,3 +206,6 @@ html {
   }
 }
 /* LEADERBOARD CONTAINER */
+=======
+/* LEADERBOARD CONTAINER */
+>>>>>>> dd24844bd08dbb238c7c32651a2596a08e04d199
