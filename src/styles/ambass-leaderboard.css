@@ -182,30 +182,4 @@ html {
     margin-right: -1.5rem;
   }
 }
-<<<<<<< HEAD
-@media only screen and (max-width: 900px) {
-  .nav-item a {
-    /* margin-right: -2rem; */
-  }
-}
-@media only screen and (max-width: 600px) {
-  html {
-    font-size: 80%;
-  }
-  .user-img img {
-    transform: scale(0.4) translateY(40%);
-  }
-  .user {
-    margin-left: -10%;
-  }
-  .leaderboard-header {
-    font-size: 80%;
-  }
-  .nav-item {
-    margin-right: -3rem;
-  }
-}
 /* LEADERBOARD CONTAINER */
-=======
-/* LEADERBOARD CONTAINER */
->>>>>>> dd24844bd08dbb238c7c32651a2596a08e04d199
