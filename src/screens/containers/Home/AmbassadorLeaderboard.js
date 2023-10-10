@@ -102,7 +102,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 02</div>
@@ -113,7 +113,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 03</div>
@@ -124,7 +124,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 04</div>
@@ -135,7 +135,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 05</div>
@@ -146,7 +146,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 06</div>
@@ -157,7 +157,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 07</div>
@@ -168,7 +168,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 08</div>
@@ -179,7 +179,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 09</div>
@@ -190,7 +190,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 10</div>
@@ -201,7 +201,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 11</div>
@@ -212,7 +212,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 12</div>
@@ -223,7 +223,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 13</div>
@@ -234,7 +234,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 14</div>
@@ -245,7 +245,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 15</div>
@@ -256,7 +256,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 16</div>
@@ -267,7 +267,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
         <div className="board-item">
           <div className="rank"># 17</div>
@@ -278,7 +278,7 @@ const AmbassadorLeaderboard = () => {
             <div className="username">Kishan Srivastava</div>
           </div>
           <div className="college-name">MNIT Jaipur</div>
-          <div className="referrals">10 referrals</div>
+          <div className="referrals">10</div>
         </div>
       </div>
     </div>
