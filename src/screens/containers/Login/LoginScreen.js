@@ -913,7 +913,7 @@ function RegScreen3(props) {
         setSeconds(parseInt(time % 60));
       })
       .catch((err) => {
-        setSendOtp(true);
+        setSendOtp(false);
         let time = Session.get("time") - parseInt(Date.now() / 1000);
         setMinutes(parseInt(time / 60));
         setSeconds(parseInt(time % 60));
@@ -1592,7 +1592,7 @@ export default function LoginScreen() {
   const arr = [bg0, bg1, bg3, bg4];
   const [currentTab, setCurrentTab] = useState("Description");
   const [currTab, setCurrTab] = useState("");
-  const Tabs = ["Home", "Events", "Contact"];
+  const Tabs = ["Home", "Events", "Profile"];
 
   return (
     <div

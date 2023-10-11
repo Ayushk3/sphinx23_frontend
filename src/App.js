@@ -170,22 +170,12 @@ function App() {
             />
             {/* <Route path="/home" element={<TimeMachine notAnim={true} />} /> */}
             {/* <Route path="/about" element={<About />} /> */}
-            <Route
-              path="/events/:cat"
-              element={<EventsCat />}
-            />
-            <Route
-              path="/comming"
-              element={<Coming />}
-            />
-            <Route
-              path="/events"
-              element={<Events />}
-            />
-            <Route
-              path="/events/:cat/:id"
-              element={<EventsView />}
-            />
+
+            <Route path="/events/:cat" element={<EventsCat />} />
+            <Route path="/comming" element={<Coming />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/team" element={<OurTeam />} />
+            <Route path="/events/:cat/:id" element={<EventsView />} />
             {/* <Route path="/dashboard" element={<UserDashboard />} /> */}
             {/* <Route path="/test" element={<Test />} /> */}
             {land ? (

@@ -10,8 +10,8 @@ function Coming() {
   const [currTab, setCurrTab] = useState("");
   const curruser = useSelector((state) => state.auth.curruser);
 
-  const Tabs = ["Home", "Events", "Contact"];
-  ////console.log(curruser);
+  const Tabs = ["Home", "Events", "Profile"];
+  //console.log(curruser);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

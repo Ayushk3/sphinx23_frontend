@@ -16,14 +16,17 @@ function EventsCat() {
   const categories = new Map([
     ["Flagship", 0],
     ["Club", 1],
-    ["Branch", 2],
+    ["Department", 2],
+    ['Research',3],
+    ['Workshops',4]
   ]);
+ 
   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
     let category = categories.get(params.cat);
-    // //console.log(params.cat);
-    // //console.log(category);
+    console.log(params.cat);
+    console.log(category);
     if (category === undefined) {
       alert("Category Invalid");
       return;

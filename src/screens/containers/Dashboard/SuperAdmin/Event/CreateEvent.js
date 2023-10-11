@@ -137,7 +137,7 @@ function CreateEvent({ setCreate, editSuperAdmin, currEvent }) {
   useEffect(() => {
     // if (submitV) post_Create();
   }, [eventCoor]);
-  const categories = ["Flagship", "Club", "Branch"];
+  const categories = ["Flagship", "Club", "Department","SRC","Workshops"];
   // useEffect(() => {
   //   post_Create();
   // }, [eventCoorIds]);
