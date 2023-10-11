@@ -91,13 +91,13 @@ html {
   display: flex;
   position: absolute;
   width: 100vw;
- height: 100vh;
+  height: 100vh;
   /* overflow-y: auto; */
   margin: 0;
   padding: 0;
   padding-bottom: 40px;
-align-items: center;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin: auto;
   align-items: center;
   /* margin-top: 5%; */
@@ -114,6 +114,7 @@ justify-content: center;
   align-items: center;
   justify-content: center;
   /* margin-right: 8rem; */
+  /* transform: translateY(2rem); */
 }
 .pass {
   padding: 0.7rem;
@@ -134,6 +135,7 @@ justify-content: center;
   );
   border-bottom: 1px solid grey;
   border-style: dashed;
+  margin-top: 4rem;
 }
 .pass-img {
   clip-path: polygon(
@@ -152,11 +154,13 @@ justify-content: center;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0.7rem;
+  /* padding: 0.7rem; */
   background-color: #fff;
   /* margin-right: 3rem; */
   justify-self: flex-start;
   clip-path: polygon(3% 0, 97% 0, 100% 8%, 100% 100%, 0 100%, 0 8%);
+  height: 5rem;
+  margin-bottom: 1rem;
 }
 .id-text {
   color: #171717;
@@ -270,7 +274,7 @@ justify-content: center;
 /* PROFILE CONTAINER *
 
 /* MEDIA QUERIES */
-.passes-sec{
+.passes-sec {
   display: flex;
   margin: auto;
   width: 100vw;
@@ -278,60 +282,56 @@ justify-content: center;
   justify-content: center;
 }
 
-.ud__profile{
+.ud__profile {
   width: 100vw;
 }
-.profPass{
+.profPass {
   border: 1px solid grey;
   display: flex;
 }
-.profInfo{
-  width: max(13vw,230px);
+.profInfo {
+  width: max(13vw, 230px);
   padding: 10px 12px;
   display: flex;
- 
+
   flex-direction: column;
 }
-.profPass-detail{
+.profPass-detail {
   margin-top: 10px;
-  color: rgba(255, 255, 255, 0.70);
-font-family: 'Inter';
-font-size: 0.6rem;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "Inter";
+  font-size: 0.6rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 10px;
 }
-.profPass-name
-{
-  font-weight:600;
+.profPass-name {
+  font-weight: 600;
   font-size: 1.2rem;
 }
-.profInfo>button{
+.profInfo > button {
   border: none;
   border-radius: 8px;
-background: #FFA20F;
-width: 80%;
-padding: 12px 2px;
-margin-left: auto;
-font-weight: 500;
-margin-right: auto;
-color: white;
-font-size: 15px;
-letter-spacing: .66px;
-cursor: pointer;
+  background: #ffa20f;
+  width: 80%;
+  padding: 12px 2px;
+  margin-left: auto;
+  font-weight: 500;
+  margin-right: auto;
+  color: white;
+  font-size: 15px;
+  letter-spacing: 0.66px;
+  cursor: pointer;
 }
-.profInfo>button:hover{
+.profInfo > button:hover {
   background: #d48505;
 }
-
-
 
 @media only screen and (max-width: 900px) {
   .profile-container {
     flex-direction: column-reverse;
-   top: 260px;
-
+    top: 260px;
   }
   .profile-container > div {
     flex-basis: 80%;
@@ -339,17 +339,14 @@ cursor: pointer;
     margin-left: 0;
   }
   .user-details {
- 
     flex-basis: 80%;
     margin-bottom: 60px;
   }
   .ud__profile > nav {
-   
     width: 100vw;
   }
 
-  .ud__profile> nav{
-   
+  .ud__profile > nav {
     background: rgba(255, 255, 255, 0.05);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
@@ -365,7 +362,6 @@ cursor: pointer;
     flex-direction: column;
     align-items: center;
     margin: 20px;
-
   }
   .profPass-img {
     width: 100%;
@@ -419,4 +415,88 @@ cursor: pointer;
     font-size: 0.9rem;
     margin-top: 5px;
   }
+}
+
+/* QR CODE */
+.pass-id p {
+  font-size: 1.2rem;
+  font-family: sans-serif;
+  margin: auto;
+  font-weight: 600;
+  background-color: #ffd747;
+  width: 125%;
+  height: 75%;
+  z-index: 10;
+  text-align: center;
+  margin-bottom: auto;
+  padding-top: 1rem;
+  transform: translateY(1.05rem);
+  border-radius: 0.7rem;
+  box-shadow: -0.3rem -0.3rem 0.8rem #ffd747;
+}
+/* QR CODE */
+.referral-stats {
+  height: 8rem;
+  width: 100%;
+  background-color: #1d1d1d;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.stats-row1 {
+  font-size: 0.6rem;
+  /* margin-bottom: 0.5rem; */
+  background-color: #292929;
+  border-radius: 2rem;
+  padding: 2px 1rem;
+  margin-top: 0.5rem;
+  /* transform: skewX(-10deg); */
+}
+.top {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  font-style: italic;
+  text-shadow: 0 0 15px rgba(250, 250, 255, 1);
+}
+.stats-row2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0.8rem 0;
+  transform: skewX(-10deg);
+}
+.stats-row2 span {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  text-shadow: 0 0 15px rgba(250, 250, 255, 1);
+}
+.stats-row3 {
+  font-size: 0.6rem;
+  font-weight: 200;
+  margin-bottom: -10px;
+  color: #fff;
+  font-style: italic;
+}
+.referral-stats .btn {
+  border: none;
+  border-radius: 10px;
+  /* height: 3rem; */
+  width: 70%;
+  padding: 1rem 1rem;
+  text-align: center;
+  align-items: center;
+  transform: translateY(1rem);
+  color: #fff;
+  background-color: #ffa20f;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  box-shadow: 0.1rem 0 1rem #ffd747;
+}
+.referral-stats .btn:hover {
+  cursor: pointer;
+  font-weight: 600;
+  text-shadow: 0 0 15px rgba(250, 250, 255, 1);
 }
