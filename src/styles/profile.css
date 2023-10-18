@@ -274,12 +274,28 @@ html {
 /* PROFILE CONTAINER *
 
 /* MEDIA QUERIES */
-.passes-sec {
+
+
+
+.passes-sec{
+  
+
   display: flex;
+  flex-direction: column;
+  gap: 30px;
   margin: auto;
   width: 100vw;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+  position: absolute;
+  width: 100vw;
+ height: 100vh;
+  /* overflow-y: auto; */
+  margin: 0;
+  padding: 0;
+  padding-bottom: 40px;
+  top: 20vh ;
+  align-items: center;
 }
 
 .ud__profile {
@@ -356,12 +372,13 @@ html {
 
 /* css for my pass changed */
 /* Small screens */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 900px) {
   .profPass {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 20px;
+    top: 260px;
   }
   .profPass-img {
     width: 100%;
