@@ -27,17 +27,18 @@ export default function PassDetail() {
   const params = useParams();
   const passName = params.id;
   const tab = params.tab;
-  //console.log("Tab", tab);
+  ////console.log("Tab", tab);
   const passes = useSelector((state) => state.auth.allpasses);
   const passNames = {
     "First Day": "Cleopetra Pass",
     "Second Day": "Cleopetra Pass",
     "Third Day": "Cleopetra Pass",
     "Golden Pass": "Cleopetra Pass",
+    "Platinum Pass":"Cleopetra Pass"
   };
   const [currpass, setPass] = useState();
 
-  //console.log(passName);
+  ////console.log(passName);
   const token = useSelector((state) => state.auth.curruser.token);
   const [tabActive, setTab] = useState("About");
   const [currentRecords, setCurrentRecords] = useState([]);
@@ -48,14 +49,14 @@ export default function PassDetail() {
   // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   // const currentRecords = users.slice(indexOfFirstRecord, indexOfLastRecord);
   useEffect(() => {
-    //console.log(passName);
+    ////console.log(passName);
     if (tab == 1) {
       setTab("Registered Students");
     }
-    //console.log("Pass Called");
+    ////console.log("Pass Called");
     fetchOnePass(setPass, passName)
       .then((res) => {
-        //console.log("Fetched PAss", currpass);
+        ////console.log("Fetched PAss", currpass);
       })
       .catch((err) => {
         // alert(err);
@@ -64,15 +65,15 @@ export default function PassDetail() {
 
     getUsersByPass(passName, token, currentPage, setCurrentRecords, setNpage)
       .then((res) => {
-        //console.log("Users Fetched");
+        ////console.log("Users Fetched");
       })
       .catch((err) => {
         // alert(err);
         toast.error(err, toastStyle);
       });
   }, []);
-  //console.log(currentRecords);
-  //console.log(Pages);
+  ////console.log(currentRecords);
+  ////console.log(Pages);
 
   return (
     <div style={{ minHeight: "100vh" }}>

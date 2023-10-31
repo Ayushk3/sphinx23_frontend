@@ -1,13 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
 function EventCard(props) {
-  const styles = [
-    { backCol: "#FF4B4B", leftCol: "white", rightCol: "#FFC700" },
-    { backCol: "#2E2D2D", leftCol: "white", rightCol: "#FFC700" },
-    { backCol: "white", leftCol: "#2D2D2D", rightCol: "#FFC700" },
-  ];
-  const { card, index } = props;
-  const curr = styles[index % 3];
+  const styles = {
+    Department:{
+      backCol: "white",
+      leftCol: "black",
+      rightCol: "black",
+    },
+    Club: {
+      backCol: "white",
+      leftCol: "black",
+      rightCol: "black",
+    },
+    Flagship: {
+      backCol: "white",
+      leftCol: "black",
+      rightCol: "black",
+    },
+    SRC: {
+      backCol: "white",
+      leftCol: "black",
+      rightCol: "black",
+    },
+    Workshops: {
+      backCol: "white",
+      leftCol: "black",
+      rightCol: "black",
+    },
+    Esports:{
+      backCol: "white",
+      leftCol: "black",
+      rightCol: "black",
+    }
+  };
+  const { card, index, category,isOwn } = props;
+  console.log(card)
+  const curr = styles[category];
+  console.log(category)
   const animDelay = (index * 6).toString() + "0ms";
   const weekday = [
     "Sunday",
@@ -18,7 +47,7 @@ function EventCard(props) {
     "Friday",
     "Saturday",
   ];
-  //console.log("/events/" + card.category + "/" + card._id);
+  ////console.log("/events/" + card.category + "/" + card._id);
   const monthNames = [
     "January",
     "February",
@@ -34,10 +63,11 @@ function EventCard(props) {
     "December",
   ];
   let date = new Date(card.from);
+
   return (
     <Link
-      to={"/events/" + card.category + "/" + card._id}
-      style={{ "text-decoration": "none" }}
+      to={ "/events/" + card.category + "/" + card._id}
+      style= {isOwn?{pointerEvents:"none", "text-decoration": "none"}: { "text-decoration": "none" }}
     >
       <div className="eventE-card" style={{ animationDelay: animDelay }}>
         <div className="eventE-imgCon" style={{ background: curr.backCol }}>
@@ -45,7 +75,9 @@ function EventCard(props) {
         </div>
         <div className="eventE-details" style={{ background: curr.backCol }}>
           <div className="eventE-left" style={{ color: curr.leftCol }}>
-            <div className="eventE-title">{card.name}</div>
+            <div className="eventE-title" style={{ fontSize: "16px" }}>
+              {card.name}
+            </div>
             {/* {card.amount != 0 && (
               <div className="eventE-price">
                 <span style={{ fontSize: "0.7rem" }}>Price</span>
@@ -53,15 +85,21 @@ function EventCard(props) {
                 Rs.{card.amount}
               </div>
             )} */}
-            <button className="eventE-register">Explore</button>
+            <button className="eventE-register"> {isOwn?"Owned":"EXPLORE"} </button>
           </div>
           <div className="eventE-right" style={{ color: curr.rightCol }}>
             <div className="eventE-sub">
               <div className="eventE-sub1">
-                <span style={{ fontSize: "0.7rem" }}>Date</span>
+                <span style={{ fontSize: "0.7rem" ,color:"black",fontWeight:"500"}}>Date</span>
                 <br></br>
-                <span style={{ fontSize: "1.2rem", fontWeight: "800" }}>
-                  Coming Soon !!
+                <span
+                  style={{
+                    fontSize: "0.9rem",
+                    fontWeight: "800",
+                    color:"grey"
+                  }}
+                >
+                  3rd -5th Nov
                   {/* {weekday[date.getDay()]}
                   <br></br>
                   {date.getDate() +
@@ -72,10 +110,12 @@ function EventCard(props) {
                 </span>
               </div>
 
-              <div className="eventE-sub2">
-                <span style={{ fontSize: "0.7rem" }}>Event Venue</span>
+              <div className="eventE-sub2" style={{ marginTop: "25px" }}>
+                <span style={{ fontSize: "0.7rem",color:"black",fontWeight:"500" }}>Event Venue</span>
                 <br></br>
-                Coming Soon !!
+                <span style={{ fontSize: "0.9rem", fontWeight: "800",color:"grey" }}>
+                  Stay Tuned
+                </span>
                 {/* <span style={{ fontSize: "1.2rem", fontWeight: "800" }}>
                   {card.location}
                 </span>
@@ -92,5 +132,4 @@ function EventCard(props) {
     </Link>
   );
 }
-
 export default EventCard;

@@ -35,8 +35,8 @@ function TimeMachine({ notAnim, landing, setLand }) {
     section.scrollIntoView({ behavior: "auto" });
   };
 
-  const Tabs = ["Home", "Events", "Contact"];
-  // //console.log(curruser);
+  const Tabs = ["Home", "Events", "Profile"];
+  // ////console.log(curruser);
   // if (curruser != null) {
   //   Tabs.push("Profile");
   //   Tabs.push("Logout");
@@ -44,7 +44,7 @@ function TimeMachine({ notAnim, landing, setLand }) {
   //   Tabs.push("Login/Register");
   // }
   const handelOver = () => {
-    //console.log("set anim over");
+    ////console.log("set anim over");
     setNotOver(false);
   };
   useEffect(() => {
@@ -76,7 +76,7 @@ function TimeMachine({ notAnim, landing, setLand }) {
     window.addEventListener("resize", handleWindowResize);
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
-  const [expiryTime, setExpiryTime] = useState("31 mar 2023 20:08:00");
+  const [expiryTime, setExpiryTime] = useState("03 nov 2023 00:00:00");
   const [countdownTime, setCountdownTime] = useState({
     Days: "",
     Hours: "",

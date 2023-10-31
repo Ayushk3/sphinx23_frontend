@@ -11,7 +11,10 @@ import "./styles/home.css";
 import "./styles/abut.css";
 import "./styles/about.css";
 import "./styles/events.css";
-import { ToastContainer, toast } from "react-toastify";
+import {
+  ToastContainer,
+  toast,
+} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   fetchEvents,
@@ -24,9 +27,18 @@ import {
   createPass,
   getUsersByPass,
   getUsers,
+  logout,
 } from "./api";
-import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  useDispatch,
+  useSelector,
+} from "react-redux";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Footer from "./screens/components/Footer";
 import PassDetail from "./screens/containers/Dashboard/SuperAdmin/Pass/PassDetail";
 import CreatePass from "./screens/containers/Dashboard/SuperAdmin/Pass/createPass";
@@ -38,7 +50,10 @@ import TimeMachine from "./screens/containers/Home/TimeMachine";
 import About from "./screens/containers/Home/about";
 import Activities from "./screens/containers/Home/Activities";
 import Theme from "./screens/containers/Home/theme";
-import { Home, RouteTwoTone } from "@mui/icons-material";
+import {
+  Home,
+  RouteTwoTone,
+} from "@mui/icons-material";
 import Events from "./screens/containers/Events/events";
 import EventsView from "./screens/containers/EventsView/EventsView";
 import EventsCat from "./screens/containers/Events/EventsCat";
@@ -50,6 +65,8 @@ import { useRef } from "react";
 import OurTeam from "./screens/containers/OurTeam/OurTeam";
 import AmbassadorM from "./screens/containers/Home/AmbassadorM";
 import Coming from "./screens/containers/Home/Coming";
+import AmbassadorLeaderboard from "./screens/containers/Home/AmbassadorLeaderboard";
+import TimeTable from "./screens/containers/Home/Schedule/TimeTable";
 
 function App() {
   // const token1 =
@@ -76,9 +93,10 @@ function App() {
   useEffect(() => {
     // chandra();
     // loginRegister(dispatch, creds);
+
     fetchEvents(dispatch)
       .then((res) => {
-        //console.log("Events Fetched");
+        ////console.log("Events Fetched");
       })
       .catch((err) => {
         toast.error(err, toastStyle);
@@ -96,14 +114,16 @@ function App() {
   // }, []);
   const [land, setLand] = useState(true);
 
-  const curruser = useSelector((state) => state.auth.curruser);
+  const curruser = useSelector(
+    (state) => state.auth.curruser
+  );
   useEffect(() => {
-    //console.log(land);
+    ////console.log(land);
   }, [land]);
   // createEvent(dispatch, {}, {});
   // createPass(dispatch, {}, {});
-  // //console.log(getUsersByPass({}, {}));
-  // //console.log(getUsers("", token1));
+  // ////console.log(getUsersByPass({}, {}));
+  // ////console.log(getUsers("", token1));
   return (
     // <div className="App">
     //   <Navbar />
@@ -136,30 +156,65 @@ function App() {
           <Routes>
             {/* <Route index element={<Landing />} />
             <Route path="/" element={<TimeMachine notAnim={true} />} /> */}
-            <Route path="/login" element={<LoginScreen />} />
-            <Route path="/ambassador" element={<AmbassadorM />} />
-            {/* <Route path="/ourteam" element={<OurTeam />} /> */}
+
+            <Route
+              path="/login"
+              element={<LoginScreen />}
+            />
+            <Route
+              path="/ambassador"
+              element={<AmbassadorM />}
+            />
+            <Route
+              path="/leaderboard"
+              element={<AmbassadorLeaderboard />}
+            />
             {/* <Route path="/home" element={<TimeMachine notAnim={true} />} /> */}
             {/* <Route path="/about" element={<About />} /> */}
+
             <Route path="/events/:cat" element={<EventsCat />} />
             <Route path="/comming" element={<Coming />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/schedule" element={<TimeTable />} />
+            <Route path="/team" element={<OurTeam />} />
             <Route path="/events/:cat/:id" element={<EventsView />} />
             {/* <Route path="/dashboard" element={<UserDashboard />} /> */}
             {/* <Route path="/test" element={<Test />} /> */}
             {land ? (
-              <Route exact path="/" element={<Landing setLand={setLand} />} />
+              <Route
+                exact
+                path="/"
+                element={
+                  <Landing setLand={setLand} />
+                }
+              />
             ) : (
-              <Route exact path="/" element={<TimeMachine notAnim={true} />} />
+              <Route
+                exact
+                path="/"
+                element={
+                  <TimeMachine notAnim={true} />
+                }
+              />
             )}
             {curruser != null ? (
               <>
-                <Route path="/dashboard" element={<UserDashboard />} />
+                <Route
+                  path="/dashboard"
+                  element={<UserDashboard />}
+                />
                 <Route
                   path="/eventAdmin/:tab?"
-                  element={<DashboardEventAdmin />}
+                  element={
+                    <DashboardEventAdmin />
+                  }
                 />
-                <Route path="/superAdmin/" element={<DashboardSuperAdmin />} />
+                <Route
+                  path="/superAdmin/"
+                  element={
+                    <DashboardSuperAdmin />
+                  }
+                />
                 <Route
                   path="/superAdmin/pass/:id/:tab?"
                   element={<PassDetail />}

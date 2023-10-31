@@ -48,7 +48,7 @@ function Register(props) {
   //   loadScript("https://checkout.razorpay.com/v1/checkout.js");
   // }, []);
 
-  // //console.log(m);
+  // ////console.log(m);
 
   const [c, setC] = useState([]);
   const [ids, setIds] = useState([]);
@@ -60,7 +60,7 @@ function Register(props) {
   const toastId = useRef(null);
   const disabledCol = "#6e9efa";
   const btnCol = "#95FF42";
-  //console.log(members);
+  ////console.log(members);
   let a = Math.floor(maxSize / 3),
     b = maxSize % 3;
   let d = [],
@@ -77,169 +77,53 @@ function Register(props) {
   for (let i = 1; i <= b; i++) {
     f.push(a * 3 + i);
   }
-  //console.log(d);
-  useEffect(() => {
-    let l = members.filter((x) => x !== "").length;
-    if (userList.length != 0 && userList.length == l && submit) {
+  ////console.log(d);
+   const PaymentLink= (a)=> {
+    console.log("Called link")
+    let l = a.filter((x) => x !== "").length;
+   
+    if (a.length != 0 && a.length == l ) {
       let body = {
         eventId: event._id,
-        userList: userList,
+        userList: a,
         tName: tName,
         receipt: `This is the Receipt for ${event.name}`,
         notes: { description: `Payment Request for ${event.name}` },
       };
-      //console.log(body.userList);
-      toastId.current = toast.loading("Processing");
+      ////console.log(body.userList);
+      // toastId.current = toast.loading("Processing");
       ConRef.current.setAttribute("disabled", true);
       ConRef.current.style.background = disabledCol;
+      console.log("called url")
       createEventPaymentRequest(body)
         .then((res) => {
-          //console.log(res);
-          if (!res.status) {
-            //console.log(window.env);
-            let body = {
-              event: event._id,
-              tName: tName,
-              userList: userList,
-              payment: {
-                order_id: process.env.REACT_APP_FREE_ORDER_ID,
-                payment_id: process.env.REACT_APP_FREE_PAYMENT_ID,
-              },
-            };
-            //console.log(body);
-            let signature = "";
-            registerForEvent(signature, body)
-              .then((res) => {
-                //console.log(res);
-                toast.update(toastId.current, {
-                  render: `You have successfully registered. Your Team Id is ${res}.Remember it for your Future Reference.`,
-                  type: "success",
-                  isLoading: false,
-                  ...toastStyle,
-                });
-                // props.setter(2);
-                ConRef.current.removeAttribute("disabled");
-                ConRef.current.style.background = btnCol;
-                setSubmit(false);
-                setReg(false);
-              })
-              .catch((err) => {
-                toast.update(toastId.current, {
-                  render: err,
-                  type: "error",
-                  isLoading: false,
-                  ...toastStyle,
-                });
-                ConRef.current.removeAttribute("disabled");
-                ConRef.current.style.background = btnCol;
-              });
-            // //console.log(body);
+          if (res) {
+            toast.info('Payment Link created');
+            console.log(res)
+            window.open(res.payment.paymentLink, "_blank");
           } else {
-            //console.log(process.env.REACT_APP_RAZORPAY_ID);
-            var options = {
-              key: process.env.REACT_APP_RAZORPAY_ID,
-              amount: res.order.razorpayInstance.amount,
-              currency: res.order.razorpayInstance.currency,
-              name: "Sphinx",
-              description: `Payment Request for ${event.name}`,
-              order_id: res.order.razorpayInstance.id,
-              handler: function (response) {
-                //console.log(response);
-                let body = {
-                  payment: {
-                    _id: res.order._id,
-                    order_id: response.razorpay_order_id,
-                    payment_id: response.razorpay_payment_id,
-                  },
-                };
-                let signature = response.razorpay_signature;
-                //console.log(body);
-                registerForEvent(signature, body)
-                  .then((res) => {
-                    //console.log(res);
-                    toast.update(toastId.current, {
-                      render: `You have successfully registered. Your Team Id is ${res}.Remember it for your Future Reference.`,
-                      type: "success",
-                      isLoading: false,
-                      ...toastStyle,
-                    });
-                    // props.setter(2);
-                    ConRef.current.removeAttribute("disabled");
-                    ConRef.current.style.background = btnCol;
-                    setReg(false);
-                  })
-                  .catch((err) => {
-                    toast.update(toastId.current, {
-                      render: err,
-                      type: "error",
-                      isLoading: false,
-                      ...toastStyle,
-                    });
-                    ConRef.current.removeAttribute("disabled");
-                    ConRef.current.style.background = btnCol;
-                  });
-              },
-              prefill: {
-                //Here we are prefilling random contact
-                contact: currUser.profile.phoneNumber,
-                //name and email id, so while checkout
-                name: currUser.profile.name,
-                email: currUser.profile.email,
-              },
-              notes: {
-                description: `Payment Request for ${event.name}`,
-              },
-              theme: {
-                color: "#2300a3",
-              },
-              modal: {
-                ondismiss: function () {
-                  toast.update(toastId.current, {
-                    render: "Payment Cancelled",
-                    type: "error",
-                    isLoading: false,
-                    ...toastStyle,
-                  });
-                  ConRef.current.removeAttribute("disabled");
-                  ConRef.current.style.background = btnCol;
-                },
-              },
-            };
-            //console.log(window.env);
-            const razorpayObject = new Razorpay(options);
-            // razorpayObject.open();
+            console.log("errorr ")
+            console.log(res);
 
-            // var razorpayObject = new Razorpay(options);
-            //console.log(razorpayObject);
-            razorpayObject.on("payment.failed", function (response) {
-              //console.log(response);
-              toast.update(toastId.current, {
-                render: "Payment Failed",
-                type: "error",
-                isLoading: false,
-                ...toastStyle,
-              });
-              ConRef.current.removeAttribute("disabled");
-              ConRef.current.style.background = btnCol;
-            });
-            razorpayObject.open();
+         
           }
+
         })
         .catch((err) => {
+          console.log("catch error",err)
           toast.update(toastId.current, {
             render: err,
             type: "error",
             isLoading: false,
             ...toastStyle,
           });
-          ConRef.current.removeAttribute("disabled");
-          ConRef.current.style.background = btnCol;
+     
         });
     }
-  }, [userList]);
+  }
   const getUsersId = async (email) => {
     // let userData = [];
-    //console.log(process.env);
+    console.log(email);
     return fetch(
       `${process.env.REACT_APP_SERVER_URL}/users/validatemail/${email}`,
       {
@@ -254,36 +138,36 @@ function Register(props) {
       .then((response) => response.json())
       .then((response) => {
         if (response.success) {
-          //console.log(response, "manvir");
-          //console.log(response.id);
+          ////console.log(response, "manvir");
+          ////console.log(response.id);
           return response.id;
         }
         throw response;
       })
       .catch((err) => {
         // toast.error(err, toastStyle);
-        //console.log(err);
+       
         throw err;
       });
 
     //
     // .then((data) => {
     //   if (data.success) {
-    //     //console.log(data.id);
-    //     //console.log(prevState);
+    //     ////console.log(data.id);
+    //     ////console.log(prevState);
     //     setIds([...prevState, data.id]);
     //   }
     // })
     // .catch((error) => {
     //   alert(error);
-    //   // //console.log(error);
+    //   // ////console.log(error);
     // });
     // return userData;
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    //console.log(members);
-    if (tName == "") {
+    if(e) e.preventDefault();
+    ////console.log(members);
+    if (maxSize > 1 && tName == "") {
       toast.error("Team Name is Mandatory", toastStyle);
       return;
     }
@@ -293,29 +177,36 @@ function Register(props) {
       return;
     }
     let entered_members = members.filter((x) => x !== "");
-    //console.log(entered_members);
+    ////console.log(entered_members);
     // let userList = [];
 
     let a = [];
-    // //console.log(eventCoor, "kunal");
+    // ////console.log(eventCoor, "kunal");
     for (let i in entered_members) {
       try {
         let mail = entered_members[i];
-        //console.log("mail", mail);
+        ////console.log("mail", mail);
         const id = await getUsersId(mail);
 
         a.push(id);
-      } catch (err) {
-        // toast.error(err, toastStyle);
+      } catch (err) 
+      {
+        toast.error(err, toastStyle);
         let m = parseInt(i) + 1;
-        //console.log(m);
+        ////console.log(m);
+        let mem = members;
+        mem[m-1] = "";
+       
+        setMembers(mem);
+        
         toast.error(`Team Member ${m} is not valid.`, toastStyle);
         return;
       }
     }
-    // //console.log(admin, "ip");
+    // ////console.log(admin, "ip");
     setUserList(a);
     setSubmit(true);
+    PaymentLink(a);
   };
   const InputField = (props) => {
     const [email, setEmail] = useState(props.email);
@@ -326,12 +217,13 @@ function Register(props) {
           className={styles.inputField}
           disabled={props.disabled}
           value={email}
+          placeholder={"Registered Email ID"}
           onChange={(e) => {
-            //console.log(e.target.value);
-            //console.log(props.value);
+            ////console.log(e.target.value);
+            ////console.log(props.value);
             let m = members;
             m[parseInt(props.value)] = e.target.value;
-            //console.log(m);
+            ////console.log(m);
             setMembers(m);
             setEmail(e.target.value);
           }}
@@ -339,10 +231,20 @@ function Register(props) {
       </div>
     );
   };
+  useEffect(()=>{
+    console.log("weee")
+    if(event.maxTeamSize==1)
+    {
+    
+      handleSubmit().then(()=>{setReg(false)})
+      
+     
+    }
+  },[])
   // const event = { title: "ROBOWARS", subTitle: "FLAGSHIP EVENTS" };
   const [teamName, setTeamName] = useState("");
   return (
-    <div className={styles.con}>
+    <div className={styles.con} style={event.maxTeamSize==1?{display:"none"}:{}}>
       <button
         className={styles.close}
         onClick={() => {
@@ -409,7 +311,7 @@ function Register(props) {
             />
             <InputField name={"Name"} vaue={teamName} setValue={setTeamName} />
           </div> */}
-          <p>Note:Enter Registered email of all Team Members</p>
+          {/* <p><b>Note:</b> Enter Registered email of all Team Members</p> */}
         </section>
         <button
           className="eventD-reg"

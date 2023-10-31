@@ -12,8 +12,8 @@
 
 .container
 {
-    width: 50vw;
-    height: 98vh;
+    width: 53vw;
+    height: 95vh;
     background: linear-gradient(154.74deg, #FF0000 -154.97%, #000000 36.33%);
     border: 1px solid #9C9C9C;
     border-radius: 15px;
@@ -129,6 +129,9 @@
     position: relative;
   
     width: fit-content;
+}
+.sideInfo{
+    margin-top: 29px;
 }
 .linkActive
 {
@@ -286,15 +289,23 @@ margin-bottom: 25px;
     {
        width: 17%;
     }
+    .secUp {
+        flex-direction: column;
+        height:70%
+    }
+    .secSocial {
+        flex-direction: column;
+    }
     .menuRoutes
     {
         font-size: 1.5rem;
+        margin-top: 0px;
     }
     .sideInfo
     {
         font-size: 0.6rem;
         width: 25%;
-        margin: 20px auto;
+        margin: 15px auto;
     }
     .linksSocial
     {
@@ -311,6 +322,13 @@ margin-bottom: 25px;
     .links
     {
         padding: 15px 20px 10px 7px; 
+    }
+    .linksSocial {
+        margin-top: 0px;
+    }
+
+    .login {
+        margin: auto;
     }
 
 

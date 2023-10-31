@@ -9,7 +9,11 @@ import reg from "../../../images/ambReg.png";
 import Footer from "../../components/Footer/footer";
 import { useSelector } from "react-redux";
 import { editUser } from "../../../api";
-import { ToastContainer, toast } from "react-toastify";
+import {
+  ToastContainer,
+  toast,
+} from "react-toastify";
+import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 const CardsData = [
   {
@@ -56,7 +60,7 @@ const Points = [
   },
 ];
 
-function Sec1() {
+function Sec1(props) {
   const toastStyle = {
     position: "top-right",
     autoClose: 2000,
@@ -67,38 +71,43 @@ function Sec1() {
     progress: undefined,
     theme: "dark",
   };
-  const user = useSelector((state) => state.auth.curruser);
+  const user = useSelector(
+    (state) => state.auth.curruser
+  );
   const handleSubmit = () => {
-    //console.log("Called");
+    ////console.log("Called");
     if (user == null) {
-      toast.error("Please Login First", toastStyle);
+      toast.error(
+        "Please Login First",
+        toastStyle
+      );
       window.location.href = "/login";
       return;
     } else {
       if (user.profile.isMnit) {
-        toast.error("This is not for MNIT Students", toastStyle);
+        toast.error(
+          "This is not for MNIT Students",
+          toastStyle
+        );
 
         return;
       }
       if (user.profile.isAmbassador) {
-        toast.error("You are already a Ambassador", toastStyle);
+        toast.error(
+          "You are already a Ambassador",
+          toastStyle
+        );
 
         return;
       }
     }
 
-    let body = { isAmbassador: true };
-    //console.log(body);
-    editUser(body)
-      .then((res) => {
-        console.log(res);
-        toast.info(res, toastStyle);
-        window.location.href = "/ambassador";
-      })
-      .catch((err) => {
-        toast.error(err, toastStyle);
-      });
+    window.open(
+      "https://forms.gle/aJHL6L9CZxY6QD6m6",
+      "_blank" // <- This is what makes it open in a new window.
+    );
   };
+
   return (
     <div className={style.sec1}>
       <div className={style.bottomGrad}></div>
@@ -110,29 +119,50 @@ function Sec1() {
           Campus<br></br>Ambassadors
         </div>
         <div className={style.introSub}>
-          There will be multiple students from each college chosen for this
-          position, who will be in charge of the entire contingent from that
-          college.
+          There will be multiple students from
+          each college chosen for this position,
+          who will be in charge of the entire
+          contingent from that college.
         </div>
         <div className={style.introBtn}>
           <button
             className={style.introLog}
-            disabled={user != null && user.profile.isAmbassador}
+            disabled={
+              user != null &&
+              user.profile.isAmbassador
+            }
             onClick={handleSubmit}
           >
-            {user != null && user.profile.isAmbassador
+            {user != null &&
+            user.profile.isAmbassador
               ? "Already a ambassador"
               : "Sign Up"}
           </button>
-          {/* <button className={style.introExp}>EXPLORE</button> */}
+          <button
+            className={style.introLog}
+            onClick={() => {
+              props.setCurrTab("LEADERBOARD");
+            }}
+          >
+            <p className={style.nodecor}>
+              View Leaderboard
+            </p>
+          </button>
         </div>
       </div>
 
       <div className={style.cardsCon}>
-        <div className={style.introHead}>What should you do</div>
+        <div className={style.introHead}>
+          What should you do
+        </div>
         <div className={style.cardsSec}>
           {CardsData.map((value, i) => {
-            return <Cards data={{ ...value }} key={i} />;
+            return (
+              <Cards
+                data={{ ...value }}
+                key={i}
+              />
+            );
           })}
         </div>
       </div>
@@ -144,10 +174,16 @@ function Pcard(props) {
   const { data } = props;
   return (
     <div className={style.point}>
-      <div className={style.Pindex}>{data.index}</div>
+      <div className={style.Pindex}>
+        {data.index}
+      </div>
       <div className={style.Pcon}>
-        <div className={style.Pname}>{data.name}</div>
-        <div className={style.Pinfo}>{data.data}</div>
+        <div className={style.Pname}>
+          {data.name}
+        </div>
+        <div className={style.Pinfo}>
+          {data.data}
+        </div>
       </div>
     </div>
   );
@@ -158,11 +194,17 @@ function Sec2() {
     <div className={style.sec2}>
       <div className={style.sec2Head}>
         {" "}
-        The appointed Campus Ambassadors will enjoy the following benefits:
+        The appointed Campus Ambassadors will
+        enjoy the following benefits:
       </div>
       <div className={style.pointsCon}>
         {Points.map((value, i) => {
-          return <Pcard data={{ index: i + 1, ...value }} key={i} />;
+          return (
+            <Pcard
+              data={{ index: i + 1, ...value }}
+              key={i}
+            />
+          );
         })}
       </div>
     </div>
@@ -174,9 +216,17 @@ function Cards(props) {
   return (
     <div className={style.Card}>
       <div className={style.Mcard}>
-        <img className={style.Mimg} alt="" src={data.img}></img>
-        <div className={style.Mtitle}>{data.name}</div>
-        <div className={style.Msub}>{data.data}</div>
+        <img
+          className={style.Mimg}
+          alt=""
+          src={data.img}
+        ></img>
+        <div className={style.Mtitle}>
+          {data.name}
+        </div>
+        <div className={style.Msub}>
+          {data.data}
+        </div>
       </div>
       <div className={style.Bcard}></div>
     </div>
@@ -185,8 +235,9 @@ function Cards(props) {
 
 function AmbassadorM() {
   const Tabs = ["Home", "Events", "Profile"];
-  const [currTab, setCurrTab] = useState("AMBASSADOR");
-  // //console.log(currTab);
+  const [currTab, setCurrTab] =
+    useState("AMBASSADOR");
+  // ////console.log(currTab);
   return (
     <div className={style.main}>
       <HomeNav
@@ -197,7 +248,7 @@ function AmbassadorM() {
         landing={false}
         setLand={() => {}}
       />
-      <Sec1 />
+      <Sec1 setCurrTab={setCurrTab} />
       <Sec2 />
       <Footer setCurrTab={() => {}} />
     </div>

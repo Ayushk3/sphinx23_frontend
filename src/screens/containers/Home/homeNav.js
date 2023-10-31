@@ -7,34 +7,56 @@ import Session from "../../../Session";
 import { useState } from "react";
 import Menu from "./menu";
 import { useSelector } from "react-redux";
+import disableScroll from "disable-scroll";
+
 function HomeNav({
+  setStatus,
   setCurrTab,
   currTab,
   Tabs,
   notanimation,
   landing,
   setLand,
+  setMenuStatus,
 }) {
   const navigate = useNavigate();
+
+  const currUser = useSelector(
+    (state) => state.auth.curruser
+  );
+
   const [menu, setMenu] = useState(false);
-  const currUser = useSelector((state) => state.auth.curruser);
+
   useEffect(() => {
-    if (currTab == "Events" || currTab == "EVENTS") navigate("/events");
-    if (currTab == "PROFILE" || currTab == "Profile") {
+    if (
+      currTab == "Events" ||
+      currTab == "EVENTS"
+    )
+      navigate("/events");
+    if (
+      currTab == "PROFILE" ||
+      currTab == "Profile"
+    ) {
       if (currUser) navigate("/dashboard");
       else {
         navigate("/login");
       }
     }
-    if (currTab == "AMBASSADOR") navigate("/ambassador");
+    if (currTab == "AMBASSADOR")
+      navigate("/ambassador");
+    if (currTab == "LEADERBOARD")
+      navigate("/leaderboard");
     if (currTab == "Contact") {
       // navigate("/");
-
       window.location.href = "#contact";
     }
-    if (currTab == "SCHEDULE") navigate("/comming");
+
+    if (currTab == "SCHEDULE")
+      navigate("/schedule");
+
     if (currTab == "TEAM") navigate("/comming");
-    if (currTab == "SPONSORS") navigate("/comming");
+    if (currTab == "SPONSORS")
+      navigate("/comming");
     if (currTab == "Logout") {
       //callLogout
       Session.remove("profile");
@@ -45,18 +67,38 @@ function HomeNav({
       try {
         setLand(false);
       } catch {
-        //console.log("not function");
+        ////console.log("not function");
       }
     }
     if (!landing) {
-      //console.log(currTab);
-      if (currTab == "Home" || currTab == "HOME") navigate("/");
+      ////console.log(currTab);
+      if (currTab == "Home" || currTab == "HOME")
+        navigate("/");
     }
   }, [currTab]);
+
+  useEffect(() => {
+    try {
+      setStatus(menu);
+    } catch {}
+  }, [menu]);
+
+  menu
+    ? disableScroll.on() && setLand(false)
+    : disableScroll.off();
+
   return (
     <div
-      className={notanimation ? "landing-navbar-notAnim" : "landing-navbar"}
-      style={landing ? { WebkitAnimationDelay: "2.4s" } : {}}
+      className={
+        notanimation
+          ? "landing-navbar-notAnim"
+          : "landing-navbar"
+      }
+      style={
+        landing
+          ? { WebkitAnimationDelay: "2.4s" }
+          : {}
+      }
     >
       {menu && (
         <Menu
@@ -67,7 +109,10 @@ function HomeNav({
         />
       )}
       <div className="landing-logo">
-        <img src={logo} style={{ width: "80%" }}></img>
+        <img
+          src={logo}
+          style={{ width: "80%" }}
+        ></img>
       </div>
       <div className="landing-tabs">
         {Tabs.map((value, i) => {
@@ -76,12 +121,19 @@ function HomeNav({
               className="landing-tab-link"
               key={i}
               onClick={() => {
-                //console.log(value);
+                ////console.log(value);
                 setCurrTab(value);
+                setStatus(false);
+                // setMenuStatus(false);
               }}
               style={
                 currTab == value
-                  ? { textShadow: "0px 0px 0px #FFFFFF ", color: "#c9c9c9" }
+                  ? {
+                      textShadow:
+                        "0px 0px 0px #FFFFFF ",
+
+                      color: "#c9c9c9",
+                    }
                   : {}
               }
             >
@@ -94,7 +146,6 @@ function HomeNav({
         className="landing-ham"
         onClick={() => {
           setMenu(true);
-          document.body.style.overflowY = "hidden";
         }}
         style={{ cursor: "pointer" }}
       >

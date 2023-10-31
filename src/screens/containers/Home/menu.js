@@ -8,9 +8,31 @@ import Session from "../../../Session";
 import { logout } from "../../../store/modules/auth/auth.action";
 import { logout as Logout } from "../../../api";
 import { useSelector } from "react-redux";
+import beepOpen from "../../../audio/beep_open_s.mp3";
+import beepClose from "../../../audio/beep_close.mp3";
+import hoverAud from "../../../audio/hover_2.mp3";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 function Menu(props) {
+  let menuOpen = new Audio(beepOpen);
+  let menuClose = new Audio(beepClose);
+  let randomRev = new Audio(hoverAud);
+  const [hover, setHover] = useState("");
+  const [anim, setAnim] = useState(true);
+  const [close, setClose] = useState(false);
+  const [tabs, setTab] = useState([
+    "HOME",
+    // "ABOUT",
+    // "CONTACT",
+    "AMBASSADOR",
+    "EVENTS",
+    "SCHEDULE",
+    // "TEAM",
+    // "THEME",
+    "SPONSORS",
+  ]);
+
   const toastStyle = {
     position: "top-right",
     autoClose: 2000,
@@ -22,23 +44,10 @@ function Menu(props) {
     theme: "dark",
   };
   const { menu, setMenu, currTab, setCurrTab } = props;
-  const [anim, setAnim] = useState(true);
-  const [close, setClose] = useState(false);
-  const [tabs, setTab] = useState([
-    "HOME",
-    // "ABOUT",
-    // "CONTACT",
-    "AMBASSADOR",
-    "EVENTS",
-    "SCHEDULE",
-    "TEAM",
-    // "THEME",
-    "SPONSORS",
-  ]);
 
   const navigate = useNavigate();
   const curruser = useSelector((state) => state.auth.curruser);
-  // //console.log(curruser);
+  // ////console.log(curruser);
   useEffect(() => {
     if (curruser != null) {
       setTab([...tabs, "PROFILE"]);
@@ -51,22 +60,27 @@ function Menu(props) {
         "AMBASSADOR",
         "EVENTS",
         "SCHEDULE",
-        "TEAM",
+
+        // "TEAM",
         // "THEME",
         "SPONSORS",
       ]);
       setLog("LOGIN/REGISTER");
     }
   }, []);
+  useEffect(() => {
+    close ? menuClose.play() : menuOpen.play();
+    //parentCallback(!close);
+  }, [close]);
 
   const alpha = Array.from(Array(26)).map((e, i) => i + 65);
   const alphabet = alpha.map((x) => String.fromCharCode(x));
-  const [hover, setHover] = useState("");
+
   const TimeInterval = 0.02;
   const ChkLog = () => {
-    //console.log("log");
+    ////console.log("log");
     if (log == "LOGOUT") {
-      //console.log("logout");
+      ////console.log("logout");
       Logout()
         .then((res) => {
           toast.info(res, toastStyle);
@@ -82,6 +96,9 @@ function Menu(props) {
       navigate("/login");
     }
   };
+  useEffect(() => {
+    if (hover) randomRev.play();
+  }, [hover]);
   const random = (value, interval) => {
     return (
       <RandomReveal
@@ -107,7 +124,7 @@ function Menu(props) {
   );
   const activeTab = useEffect(() => {}, []);
 
-  // //console.log(
+  // ////console.log(
   //   tabs.findIndex((val, i) => {
   //     if (val == currTab.toUpperCase()) return currTab.toUpperCase();
   //   })
@@ -133,6 +150,7 @@ function Menu(props) {
             className={style.sideInfo}
             onMouseEnter={() => {
               setHover("discover");
+              //menuClose.play();
             }}
           >
             <div className={style.whiteBox}></div>
@@ -210,7 +228,6 @@ function Menu(props) {
         <div className={style.secSocial}>
           <div
             className={style.sideInfo}
-            style={{ marginTop: "29px" }}
             onMouseEnter={() => {
               setHover("connect");
             }}
@@ -267,7 +284,6 @@ function Menu(props) {
         className={style.sec2}
         onClick={() => {
           setClose(true);
-          document.body.style.overflowY = "scroll";
           setTimeout(() => {
             setMenu(false);
           }, 350);

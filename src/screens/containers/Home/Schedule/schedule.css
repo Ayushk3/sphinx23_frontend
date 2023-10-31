@@ -1,0 +1,77 @@
+.container {
+    background-color: black;
+    /* height: 100vh; */
+    /* overflow-y: visible; */
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#schedule {
+
+    width: 90vw;
+    height: 90%;
+    margin-bottom: 3rem;
+
+}
+
+.table-row {
+
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    margin-top: 0.3rem;
+}
+
+.row-header {
+    box-sizing: border-box;
+    font-size: smaller;
+    display: grid;
+    place-content: center;
+    font-weight: bolder;
+    word-break: break-all;
+}
+
+/* EVENT CARD */
+.event-card {
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.1rem 1rem 0.1rem 1rem;
+    margin: 0.2rem 0 0.2rem 0;
+    border-radius: 0.3rem;
+}
+
+.event-name {
+    text-transform: uppercase;
+    font-size: x-small;
+    color: black;
+    font-weight: bolder;
+}
+
+
+.event-sub-row {
+    display: grid;
+    grid-template: 1fr/1fr;
+
+}
+
+.event-sub-row>* {
+    grid-column: 1/1;
+    grid-row: 1/1;
+}
+
+.organiser-name {
+    text-transform: capitalize;
+    font-size: xx-small;
+    color: black;
+}
+
+.event-loc {
+    text-transform: uppercase;
+    font-weight: bold;
+}

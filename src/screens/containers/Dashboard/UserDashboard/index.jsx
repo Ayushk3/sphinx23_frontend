@@ -15,7 +15,7 @@ const UserDashboard = () => {
     if (!currUser) {
       window.location.href = "/login";
     }
-    //console.log("USef Eeevt", currUser.token);
+    ////console.log("USef Eeevt", currUser.token);
     if (currUser.profile.type === "superAdmin") {
       navigate("/superAdmin");
     }
@@ -31,8 +31,8 @@ const UserDashboard = () => {
       <HomeNav setCurrTab={setCurrTab} currTab={currTab} Tabs={Tabs} />
       <div className="ud__containing-grid">
         <Profile />
-        <Events />
-        <Queries />
+        {/* <Events />
+        <Queries /> */}
       </div>
     </div>
   );

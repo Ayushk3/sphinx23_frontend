@@ -24,7 +24,7 @@ function Query({ onSubmit }) {
   const currUser = useSelector((state) => state.auth.curruser);
   const handleSubmit = () => {
     let query = { eventId: "", queryDesc: description, subject: subject };
-    // //console.log(query);
+    // ////console.log(query);
     onSubmit(query);
     setOpen(false);
   };
@@ -38,7 +38,7 @@ function Query({ onSubmit }) {
   };
 
   return (
-    <div className={styles.query}>
+    <div className={styles.query} style={{position:"sticky",top:"0px",left:"30px"}}>
       {open ? (
         <>
           <img

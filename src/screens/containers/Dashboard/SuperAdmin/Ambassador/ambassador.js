@@ -34,7 +34,7 @@ const Ambassador = (props) => {
       setNpage: setNpage,
     });
   }, []);
-  //console.log(Pages);
+  ////console.log(Pages);
   return (
     <div>
       <div className="app-container">
@@ -76,7 +76,9 @@ const Ambassador = (props) => {
                 <th>Phone Number</th>
                 <th>Email</th>
                 <th>College Name</th>
+                <th>UID</th>
                 <th>Profit</th>
+                <th>Referrals</th>
               </tr>
             </thead>
 

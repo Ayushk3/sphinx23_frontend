@@ -19,12 +19,13 @@ import {
   sendForgotOTP,
   verifyForgotOTP,
   resetPassword,
+  isValidAmbassador,
 } from "../../../api";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Creatable, { useCreatable } from "react-select/creatable";
 import bg1 from "./bg1.png";
 import bg3 from "./bg3.png";
 import bg4 from "./bg4.png";
@@ -33,6 +34,7 @@ import Session from "../../../Session";
 import { LeakRemoveTwoTone } from "@mui/icons-material";
 import { useRef } from "react";
 import HomeNav from "../Home/homeNav";
+import { loginReg } from "../../../store/modules/auth/auth.action";
 
 const toastStyle = {
   position: "top-right",
@@ -50,9 +52,9 @@ const disabledCol = "#6ea613;";
 const btnCol = "#C1FF5C";
 
 function handleChange(event, setter) {
-  // //console.log("Handle Called");
+  // ////console.log("Handle Called");
   const { name, value, type, checked } = event.target;
-  //console.log(name, value);
+  ////console.log(name, value);
   setter((prevformData) => ({
     ...prevformData,
     [name]: type === "checkbox" ? checked : value,
@@ -105,18 +107,18 @@ function Login(props) {
   });
 
   const handleSuccess = (response) => {
-    //console.log(response);
+    ////console.log(response);
     let body = {
       email: response.profileObj.email,
       password: response.googleId,
       isRegistration: false,
     };
-    //console.log(body);
+    ////console.log(body);
     props.setBg((present) => !present);
 
     loginRegister(dispatch, body)
       .then((data) => {
-        //console.log(data);
+        ////console.log(data);
         // alert("Success");
         if (!data.profile.isEmailVerified) {
           toast.error("Please Complete Your Profile", toastStyle);
@@ -174,11 +176,11 @@ function Login(props) {
   function handleSubmit(event) {
     props.setBg((present) => !present);
     formData.isRegistration = false;
-    //console.log(formData);
+    ////console.log(formData);
     event.preventDefault();
     loginRegister(dispatch, formData)
       .then((data) => {
-        //console.log(data.profile);
+        ////console.log(data.profile);
         if (!data.profile.isEmailVerified) {
           toast.error("Please Complete Your Profile", toastStyle);
           props.toreg(false);
@@ -210,7 +212,9 @@ function Login(props) {
             <div className="login-form-signup-que">New User?</div>
             <Link
               className="login-form-signup-link"
-              style={{ textDecoration: "underline" }}
+              style={{
+                textDecoration: "underline",
+              }}
               onClick={() => {
                 props.toreg(false);
               }}
@@ -229,7 +233,7 @@ function Login(props) {
                 name="email"
                 type="email"
                 onKeyDown={(e) => {
-                  //console.log(e);
+                  ////console.log(e);
                   if (e.key === "Enter") PassRef.current.focus();
                 }}
                 value={formData.email}
@@ -252,7 +256,7 @@ function Login(props) {
                   handleChange(e, setFormData);
                 }}
                 onKeyDown={(e) => {
-                  //console.log(e);
+                  ////console.log(e);
                   if (e.key === "Enter") LoginRef.current.focus();
                 }}
               />
@@ -282,7 +286,7 @@ function Login(props) {
             ref={LoginRef}
             onClick={handleSubmit}
             onKeyDown={(e) => {
-              //console.log(e);
+              ////console.log(e);
               if (e.key === "Enter") handleSubmit();
             }}
           >
@@ -306,19 +310,19 @@ function RegScreen1(props) {
 
   const user = useSelector((state) => state.auth.curruser);
   const handleSuccess = (response) => {
-    //console.log(response);
+    ////console.log(response);
     let body = {
       email: response.profileObj.email,
       password: response.googleId,
       isRegistration: true,
     };
-    //console.log(body);
+    ////console.log(body);
     props.setBg((present) => !present);
 
     loginRegister(dispatch, body)
       .then((res) => {
-        //console.log(res);
-        //console.log("mail");
+        ////console.log(res);
+        ////console.log("mail");
         // toast.info("Sending Mail", toastStyle);
         toastId.current = toast.loading("Sending Mail");
         ConRef.current.setAttribute("disabled", true);
@@ -375,9 +379,9 @@ function RegScreen1(props) {
     "253528649688-tps0nfasvoejaetbbk429hmukssg9h9v.apps.googleusercontent.com";
 
   useEffect(() => {
-    //console.log("Use Effect Called", user);
+    ////console.log("Use Effect Called", user);
     if (user && !user.profile.isEmailVerified) {
-      //console.log("mail");
+      ////console.log("mail");
       // toast.info("Sending Mail", toastStyle);
       toastId.current = toast.loading("Sending Mail");
       ConRef.current.setAttribute("disabled", true);
@@ -413,7 +417,7 @@ function RegScreen1(props) {
       user.profile.isEmailVerified &&
       !user.profile.isMobileNumberVerified
     ) {
-      //console.log("Called");
+      ////console.log("Called");
       toast.info("Profile is not complete.", toastStyle);
       // alert("Profile is not complete.");
       props.setter(3);
@@ -424,7 +428,7 @@ function RegScreen1(props) {
       user.profile.isEmailVerified &&
       user.profile.isMobileNumberVerified
     ) {
-      //console.log("Called");
+      ////console.log("Called");
       toast.info("Already Logged In", toastStyle);
       // alert("Already Logged In");
       navigate("/");
@@ -443,12 +447,12 @@ function RegScreen1(props) {
   const toastId = useRef(null);
 
   const handleSubmit = async () => {
-    //console.log("Called", props.formData);
+    ////console.log("Called", props.formData);
     props.formData.isRegistration = true;
 
     loginRegister(dispatch, props.formData)
       .then((res) => {
-        //console.log(res);
+        ////console.log(res);
         // toast.info("Sending Mail", toastStyle);
         toastId.current = toast.loading("Sending Mail");
         ConRef.current.setAttribute("disabled", true);
@@ -503,12 +507,6 @@ function RegScreen1(props) {
   return (
     <>
       <div className="login-form-title">Create an Account</div>
-      <SocialIcons
-        handleSuccess={handleSuccess}
-        handleFailure={handleFailure}
-        isRegistration={true}
-      />
-      <Seprator />
       <div className="login-form-sub-title">Sign-up with email</div>
       <div className="login-form-signup">
         <div className="login-form-signup-que">Already have an account?</div>
@@ -534,7 +532,7 @@ function RegScreen1(props) {
             type="email"
             value={props.formData.email}
             onKeyDown={(e) => {
-              //console.log(e);
+              ////console.log(e);
               if (e.key === "Enter") PassRef.current.focus();
             }}
             onChange={(e) => {
@@ -556,7 +554,7 @@ function RegScreen1(props) {
               handleChange(e, props.setFormData);
             }}
             onKeyDown={(e) => {
-              //console.log(e);
+              ////console.log(e);
               if (e.key === "Enter") ConRef.current.focus();
             }}
           />
@@ -569,6 +567,12 @@ function RegScreen1(props) {
       >
         Continue
       </button>
+      <Seprator />
+      <SocialIcons
+        handleSuccess={handleSuccess}
+        handleFailure={handleFailure}
+        isRegistration={true}
+      />
     </>
   );
 }
@@ -578,7 +582,7 @@ function RegScreen2(props) {
   const profile = useSelector((state) => state.auth.curruser.profile);
 
   useEffect(() => {
-    //console.log("Use Effect Called", token);
+    ////console.log("Use Effect Called", token);
     if (profile && profile.isEmailVerified) {
       props.setter(3);
       props.setBg((present) => !present);
@@ -605,16 +609,16 @@ function RegScreen2(props) {
   const handleBackChange = (element, index) => {
     if (isNaN(element.value)) return false;
     setOtp([...otp.map((d, idx) => (idx === index ? "" : d))]);
-    //console.log(element.previousSibling);
-    //console.log("delete");
+    ////console.log(element.previousSibling);
+    ////console.log("delete");
     if (element.previousSibling) {
-      //console.log("delete");
+      ////console.log("delete");
       element.previousSibling.focus();
     }
   };
   const conRef = useRef(null);
   function handleSubmit() {
-    //console.log(otp.join(""));
+    ////console.log(otp.join(""));
     let otp_string = otp.join("");
     if (otp_string == "") toast.info("OTP is Required", toastStyle);
     else {
@@ -634,7 +638,7 @@ function RegScreen2(props) {
     }
   }
   function ResetOtp() {
-    //console.log("called");
+    ////console.log("called");
     sendVerificationMail()
       .then((res) => {
         // alert("Mail Sent");
@@ -753,15 +757,17 @@ function RegScreen3(props) {
   const handleBackChange = (element, index) => {
     if (isNaN(element.value)) return false;
     setOtp([...otp.map((d, idx) => (idx === index ? "" : d))]);
-    //console.log(element.previousSibling);
-    //console.log("delete");
+    ////console.log(element.previousSibling);
+    ////console.log("delete");
     if (element.previousSibling) {
-      //console.log("delete");
+      ////console.log("delete");
       element.previousSibling.focus();
     }
   };
   function ResetOtp() {
-    let body = { phoneNumber: props.formData.mobile };
+    let body = {
+      phoneNumber: props.formData.mobile,
+    };
     toastId.current = toast.loading("Sending OTP");
     sendMobileOTP(body)
       .then((res) => {
@@ -790,6 +796,10 @@ function RegScreen3(props) {
       });
   }
   const submitRef = useRef(null);
+  const user = useSelector((state) => state.auth.curruser);
+  // //console.log(user)
+
+  const dispact = useDispatch();
   const handleSubmit = async () => {
     if (props.formData.name == "") toast.info("Name Required", toastStyle);
     else if (props.formData.college == "")
@@ -803,25 +813,41 @@ function RegScreen3(props) {
       toast.info("Mobile Must be Verified", toastStyle);
       // alert("Mobile Must be Verified");
     } else {
-      //console.log("Called", otp.join(""));
-      //console.log(ambassadorId);
+      ////console.log("Called", otp.join(""));
+      ////console.log(ambassadorId);
       let body = {
         name: props.formData.name,
         collegeName: props.formData.college,
         otp: otp.join(""),
       };
-      //console.log(body);
+      ////console.log(body);
       if (props.formData.campusAmbassador) {
-        getUsersId(token, props.formData.campusAmbassador, setambassadorId)
+        isValidAmbassador(
+          token,
+          props.formData.campusAmbassador,
+          setambassadorId
+        );
+        isValidAmbassador(
+          token,
+          props.formData.campusAmbassador,
+          setambassadorId
+        )
           .then((res) => {
-            //console.log("Ambassador Correct", ambassadorId);
+            ////console.log("Ambassador Correct", ambassadorId);
+            // if(!res.isAmbassador)
             body.refererId = props.formData.campusAmbassador;
-            //console.log(body);
+            ////console.log(body);
             verifyMobileOTP(body)
               .then((res) => {
-                toast.info("Registration Completed", toastStyle);
                 // alert("Registration Completed");
-                navigate("/dashboard");
+
+                // const profile= { ...user, profile: res.profile }
+                // Session.setObject("profile", profile);
+                // //console.log(profile)
+
+                // dispact(loginReg(profile))
+                toast.info("Registration Completed", toastStyle);
+                navigate("/");
               })
               .catch((err) => {
                 toast.error(err, toastStyle);
@@ -835,29 +861,42 @@ function RegScreen3(props) {
       } else {
         verifyMobileOTP(body)
           .then((res) => {
-            toast.info("Registration Completed", toastStyle);
             // alert("Registration Completed");
-            navigate("/dashboard");
+            //console.log("complete")
+            // const profile= { ...user, profile: res.profile }
+            // Session.setObject("profile", profile);
+
+            // //console.log(profile)
+            // dispact(loginReg(profile))
+            toast.info("Registration Completed", toastStyle);
+            //console.log("calledNavigate")
+            navigate("/");
+
+            // //console.log(profile)
+
+            // navigate("/dashboard");
           })
           .catch((err) => {
             toast.error(err, toastStyle);
           });
       }
 
-      //console.log(body);
+      ////console.log(body);
       props.setBg((present) => !present);
     }
   };
   const toastId = useRef(null);
   const sendOTP = () => {
-    //console.log(props.formData.mobile);
+    ////console.log(props.formData.mobile);
     if (props.formData.mobile.length != 10) {
       toast.info("Mobile No. must be of length 10.", toastStyle);
       return;
     }
 
     toastId.current = toast.loading("Sending OTP");
-    let body = { phoneNumber: props.formData.mobile };
+    let body = {
+      phoneNumber: props.formData.mobile,
+    };
     sendMobileOTP(body)
       .then((res) => {
         toast.update(toastId.current, {
@@ -874,6 +913,10 @@ function RegScreen3(props) {
         setSeconds(parseInt(time % 60));
       })
       .catch((err) => {
+        setSendOtp(false);
+        let time = Session.get("time") - parseInt(Date.now() / 1000);
+        setMinutes(parseInt(time / 60));
+        setSeconds(parseInt(time % 60));
         toast.update(toastId.current, {
           render: err,
           type: "error",
@@ -886,8 +929,9 @@ function RegScreen3(props) {
     // if (props.formData.mobile.length) setSendOtp(true);
   };
   useEffect(() => {
+    if (!sendOtp) submitRef.current.style.background = "#1a686f";
     if (sendOtp) {
-      submitRef.current.style.background = "#1a686f";
+      submitRef.current.style.background = btnCol;
       const interval = setInterval(() => {
         if (seconds > 0) {
           setSeconds(seconds - 1);
@@ -908,7 +952,83 @@ function RegScreen3(props) {
       };
     }
   }, [seconds, sendOtp]);
-
+  const colleges = [
+    {
+      value: "mnit",
+      label: "Malviya National Institute of Technology, Jaipur",
+    },
+    {
+      value: "bits",
+      label: "Birla Institute of Technology, Pilani",
+    },
+    {
+      value: "muj",
+      label: "Manipal University Jaipur",
+    },
+    {
+      value: "uor",
+      label: "University of Rajasthan",
+    },
+    {
+      value: "jnu",
+      label: "Jaipur National University",
+    },
+    {
+      value: "iitd",
+      label: "Indian Institute of Technology, Delhi",
+    },
+    {
+      value: "iitb",
+      label: "Indian Institute of Technology, Bombay",
+    },
+    {
+      value: "iitj",
+      label: "Indian Institute of Technology, Jodhpur",
+    },
+    {
+      value: "mnnit",
+      label: "Motilal Nehru National Institute of Technology, Allahabad",
+    },
+    {
+      value: "mc",
+      label: "Maharaja College, Jaipur",
+    },
+    {
+      value: "jecrc",
+      label: "Jaipur Engineering College and Research Centre",
+    },
+    {
+      value: "pu",
+      label: "Poornima University, Jaipur",
+    },
+    {
+      value: "auj",
+      label: "Amity University, Jaipur",
+    },
+  ].sort((a, b) => {
+    let one = a.label.toLowerCase();
+    let sec = b.label.toLowerCase();
+    return one < sec ? -1 : one > sec ? 1 : 0;
+  });
+  // useEffect(() => {
+  //   //console.log(
+  //     "college: ",
+  //     props.formData.college
+  //   );
+  // }, [props.formData.college]);
+  const handleCollegeName = (obj) => {
+    props.setFormData((prevFormData) => ({
+      ...prevFormData,
+      college: obj.label,
+    }));
+  };
+  const selectStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      color: "black",
+      height: "100%",
+    }),
+  };
   return (
     <>
       <div className="login-form-title">Add Details</div>
@@ -920,7 +1040,7 @@ function RegScreen3(props) {
           className="login-form-text-inputs"
           name="name"
           onKeyDown={(e) => {
-            //console.log(e);
+            ////console.log(e);
             if (e.key === "Enter") clgRef.current.focus();
           }}
           autoFocus
@@ -936,7 +1056,23 @@ function RegScreen3(props) {
         <label className="login-form-text-label" htmlFor="college">
           College *
         </label>
-        <input
+        <div
+          style={{
+            width: "100%",
+            height: "2rem",
+            marginBottom: "8px",
+          }}
+        >
+          <Creatable
+            //value={props.formData.college}
+            options={colleges}
+            onChange={(value) => handleCollegeName(value)}
+            styles={selectStyles}
+            placeholder="Enter..."
+            required={true}
+          />
+        </div>
+        {/* <input
           ref={clgRef}
           className="login-form-text-inputs"
           name="college"
@@ -946,14 +1082,14 @@ function RegScreen3(props) {
             handleChange(e, props.setFormData);
           }}
           onKeyDown={(e) => {
-            //console.log(e);
+            ////console.log(e);
             if (e.key === "Enter") ambRef.current.focus();
           }}
-        />
+        /> */}
       </div>
       <div className="login-form-input-grp">
         <label className="login-form-text-label" htmlFor="college">
-          Campus Ambassador
+          Referrer ID
         </label>
         <input
           className="login-form-text-inputs"
@@ -965,7 +1101,7 @@ function RegScreen3(props) {
             handleChange(e, props.setFormData);
           }}
           onKeyDown={(e) => {
-            //console.log(e);
+            ////console.log(e);
             if (e.key === "Enter") mobRef.current.focus();
           }}
         />
@@ -985,24 +1121,26 @@ function RegScreen3(props) {
             handleChange(e, props.setFormData);
           }}
           onKeyDown={(e) => {
-            //console.log(e);
+            ////console.log(e);
             if (e.key === "Enter") verifyRef.current.click();
           }}
         />
       </div>
-      {!sendOtp && (
+      {/* {!sendOtp && (
         <div className="login-form-input-grp">
           <Link
             className="login-form-text-label login-form-otp-resend-link"
-            style={{ fontSize: "0.9rem" }}
+            style={{ fontSize: "0.9rem" ,backgroundColor:"#C1FF5C",padding:"10px",color:"black",boxShadow:"white",borderRadius:"5px" }}
             htmlFor="mobile"
-            onClick={sendOTP}
+            onClick={() => {
+              sendOTP();
+            }} // call send otp
             ref={verifyRef}
           >
             Verify Mobile
           </Link>
         </div>
-      )}
+      )} */}
       {sendOtp ? (
         <>
           {" "}
@@ -1017,8 +1155,10 @@ function RegScreen3(props) {
                   id="standard-basic"
                   variant="standard"
                   className="login-form-otp-cell"
+                  style={{ marginTop: "5px" }}
+                  inputMode="numeric"
                   name="otp"
-                  type="text"
+                  type="tel"
                   key={index}
                   value={data}
                   maxLength="1"
@@ -1054,27 +1194,38 @@ function RegScreen3(props) {
           ) : (
             <></>
           )}
-          {/* <div className="login-form-otp-resend">
-            <Link
-              className="login-form-otp-resend-link"
-              style={{
-                fontSize: "0.9rem",
-                background: "white",
-              }}
-              onClick={() => {}}
-            >
-              SUBMIT
-            </Link>
-          </div> */}
         </>
       ) : (
         <></>
+      )}
+      {!sendOtp && (
+        <Link
+          className="login-form-submit-btn"
+          disabled={!sendOtp}
+          style={
+            !sendOtp
+              ? {
+                  background: btnCol,
+                  textDecoration: "none",
+                  textAlign: "center",
+                }
+              : { background: btnCol }
+          }
+          onClick={sendOTP} // call send otp
+          ref={verifyRef}
+        >
+          Verify Mobile
+        </Link>
       )}
 
       <button
         className="login-form-submit-btn"
         disabled={!sendOtp}
-        style={!sendOtp ? { background: disabledCol } : { background: btnCol }}
+        style={
+          !sendOtp
+            ? { background: disabledCol, display: "none" }
+            : { background: btnCol }
+        }
         ref={submitRef}
         onClick={handleSubmit}
       >
@@ -1102,10 +1253,10 @@ function ForgotPass() {
         ConRef.current.style.background = disabledCol;
         setId(res);
         let body = { id: res };
-        //console.log("Body", body);
+        ////console.log("Body", body);
         sendForgotOTP(body)
           .then((resp) => {
-            //console.log(resp);
+            ////console.log(resp);
             toast.update(toastId.current, {
               render: "Mail Sent",
               type: "success",
@@ -1144,7 +1295,7 @@ function ForgotPass() {
     setOtp(new Array(6).fill(""));
     sendForgotOTP(body)
       .then((resp) => {
-        //console.log(resp);
+        ////console.log(resp);
         toast.update(toastId.current, {
           render: "Mail Sent",
           type: "success",
@@ -1180,25 +1331,29 @@ function ForgotPass() {
   };
   const handleOTPVerify = () => {
     let body = { id: id, otp: otp.join("") };
-    // console.log(body);
+    // //console.log(body);
     verifyForgotOTP(body)
       .then((res) => {
-        // console.log(res);
+        // //console.log(res);
         toast.info("Verified", toastStyle);
         setSecret(res);
         setVerify(true);
       })
       .catch((err) => {
-        //console.log(err);
+        ////console.log(err);
         toast.error(err, toastStyle);
       });
   };
   const handleResetPassword = () => {
-    //console.log(secret, password);
-    let body = { secret: secret, password: password, id: id };
+    ////console.log(secret, password);
+    let body = {
+      secret: secret,
+      password: password,
+      id: id,
+    };
     resetPassword(body)
       .then((res) => {
-        //console.log(res);
+        ////console.log(res);
         toast.info(res, toastStyle);
         window.location.href = "/";
       })
@@ -1209,10 +1364,10 @@ function ForgotPass() {
   const handleBackChange = (element, index) => {
     if (isNaN(element.value)) return false;
     setOtp([...otp.map((d, idx) => (idx === index ? "" : d))]);
-    //console.log(element.previousSibling);
-    //console.log("delete");
+    ////console.log(element.previousSibling);
+    ////console.log("delete");
     if (element.previousSibling) {
-      //console.log("delete");
+      ////console.log("delete");
       element.previousSibling.focus();
     }
   };
@@ -1275,10 +1430,12 @@ function ForgotPass() {
                   variant="standard"
                   className="login-form-otp-cell"
                   name="otp"
-                  type="text"
+                  type="tel"
                   key={index}
+                  inputmode="numeric"
                   value={data}
                   maxLength="1"
+                  style={{ width: "2rem" }}
                   onChange={(e) => handleChangeOtp(e.target, index)}
                   onFocus={(e) => e.target.select()}
                   onKeyDown={(e) => {
@@ -1351,7 +1508,7 @@ function ForgotPass() {
               setPassword(e.target.value);
             }}
             onKeyDown={(e) => {
-              //console.log(e);
+              ////console.log(e);
               if (e.key === "Enter") conRef.current.focus();
             }}
           />
@@ -1435,13 +1592,15 @@ export default function LoginScreen() {
   const arr = [bg0, bg1, bg3, bg4];
   const [currentTab, setCurrentTab] = useState("Description");
   const [currTab, setCurrTab] = useState("");
-  const Tabs = ["Home", "Events", "Contact"];
+  const Tabs = ["Home", "Events", "Profile"];
 
   return (
     <div
       className="login-container"
       id="bgChange"
-      style={{ backgroundImage: `url(${arr[parseInt(Math.random() * 4)]})` }}
+      style={{
+        backgroundImage: `url(${arr[parseInt(Math.random() * 4)]})`,
+      }}
     >
       <HomeNav
         setCurrTab={setCurrTab}
