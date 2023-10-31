@@ -52,7 +52,7 @@ function HomeNav({
     }
 
     if (currTab == "SCHEDULE")
-      navigate("/comming");
+      navigate("/schedule");
 
     if (currTab == "TEAM") navigate("/comming");
     if (currTab == "SPONSORS")

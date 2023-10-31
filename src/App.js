@@ -66,6 +66,7 @@ import OurTeam from "./screens/containers/OurTeam/OurTeam";
 import AmbassadorM from "./screens/containers/Home/AmbassadorM";
 import Coming from "./screens/containers/Home/Coming";
 import AmbassadorLeaderboard from "./screens/containers/Home/AmbassadorLeaderboard";
+import TimeTable from "./screens/containers/Home/Schedule/TimeTable";
 
 function App() {
   // const token1 =
@@ -174,6 +175,7 @@ function App() {
             <Route path="/events/:cat" element={<EventsCat />} />
             <Route path="/comming" element={<Coming />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/schedule" element={<TimeTable />} />
             <Route path="/team" element={<OurTeam />} />
             <Route path="/events/:cat/:id" element={<EventsView />} />
             {/* <Route path="/dashboard" element={<UserDashboard />} /> */}
